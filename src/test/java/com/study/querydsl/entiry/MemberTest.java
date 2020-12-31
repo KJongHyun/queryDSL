@@ -17,7 +17,7 @@ class MemberTest {
 
     @Test
     public void testEntity() {
-       Team teamA = new Team("teamA");
+        Team teamA = new Team("teamA");
         Team teamB = new Team("teamB");
         em.persist(teamA);
         em.persist(teamB);
