@@ -1,6 +1,7 @@
 package com.study.querydsl.entiry;
 
 import com.querydsl.core.QueryResults;
+import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -140,7 +141,7 @@ public class QuerydslBasicTest {
 
         Member member5 = result.get(0);
         Member member6 = result.get(1);
-        Member memberNull= result.get(2);
+        Member memberNull = result.get(2);
         assertEquals("member5", member5.getUsername());
         assertEquals("member6", member6.getUsername());
         assertNull(memberNull.getUsername());
@@ -174,5 +175,32 @@ public class QuerydslBasicTest {
         assertEquals(2, queryResults.getResults().size());
 
     }
+
+    @Test
+    public void aggregation() {
+        List<Tuple> result = queryFactory
+                .select(
+                        member.count(),
+                        member.age.sum(),
+                        member.age.avg(),
+                        member.age.max(),
+                        member.age.min()
+                )
+                .from(member)
+                .fetch();
+
+        Tuple tuple = result.get(0);
+        assertEquals(4, tuple.get(member.count()));
+        assertEquals(100, tuple.get(member.age.sum()));
+        assertEquals(25, tuple.get(member.age.avg()));
+        assertEquals(40, tuple.get(member.age.max()));
+        assertEquals(10, tuple.get(member.age.min()));
+    }
+
+    @Test
+    public void group() {
+
+    }
+
 
 }
