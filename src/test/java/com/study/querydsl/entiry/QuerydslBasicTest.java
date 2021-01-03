@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.study.querydsl.entiry.QMember.member;
+import static com.study.querydsl.entiry.QTeam.team;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -199,7 +200,20 @@ public class QuerydslBasicTest {
 
     @Test
     public void group() {
+        List<Tuple> result = queryFactory
+                .select(team.name, member.age.avg())
+                .from(member)
+                .join(member.team, team)
+                .groupBy(team.name)
+                .fetch();
 
+        Tuple teamA = result.get(0);
+        Tuple teamB = result.get(1);
+
+        assertEquals("teamA", teamA.get(team.name));
+        assertEquals(15, teamA.get(member.age.avg()));
+        assertEquals("teamB", teamB.get(team.name));
+        assertEquals(35, teamB.get(member.age.avg()));
     }
 
 
