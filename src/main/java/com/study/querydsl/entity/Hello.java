@@ -1,4 +1,4 @@
-package com.study.querydsl.entiry;
+package com.study.querydsl.entity;
 
 import lombok.Getter;
 import lombok.Setter;

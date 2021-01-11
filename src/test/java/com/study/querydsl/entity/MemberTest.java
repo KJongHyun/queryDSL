@@ -1,4 +1,4 @@
-package com.study.querydsl.entiry;
+package com.study.querydsl.entity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

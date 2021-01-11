@@ -1,8 +1,8 @@
 package com.study.querydsl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.study.querydsl.entiry.Hello;
-import com.study.querydsl.entiry.QHello;
+import com.study.querydsl.entity.Hello;
+import com.study.querydsl.entity.QHello;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
